@@ -1,0 +1,54 @@
+generated: '2026-08-06'
+method: searched
+source: https://8i.github.io/embeddable_webplayer/#/
+versioning:
+  scheme: semver-in-path
+  current: 3.8.46
+  product: 8i WebPlayer (volcap-player.js)
+  latest_channel: https://player.8i.com/release/latest/volcap-player.js
+  pinned_channel: https://player.8i.com/release/${VERSION}/volcap-player.js
+  docs: https://8i.github.io/embeddable_webplayer/#/
+  other_products:
+  - {product: 8i Unity Plugin, current: 1.8.0f1, docs: 'https://8iunityplugin.readthedocs.io/en/latest/'}
+  - {product: 8i Unreal Plugin, current: 0.6.1, docs: 'https://8iunrealplugin.readthedocs.io/en/latest/'}
+
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  observed_deprecations:
+  - item: HVR codec (point-cloud)
+    superseded_by: PAT codec (textured mesh)
+    evidence: >-
+      WebPlayer changelog 3.8.41 (2023-11-17) records "Update documentation removing
+      mentions of deprecated HVR support"; the Unreal plugin ships PAT classes only.
+    note: >-
+      Recorded from a changelog entry, not from a published deprecation policy. 8i
+      publishes no deprecation or sunset policy, so no Deprecation pointer is emitted.
+
+support_windows:
+  unity: [2018.4 LTS, 2019.4 LTS, 2020.3 LTS, 2021.3 LTS]
+  unreal: [4.27.2, 5.1.0]
+  unreal_platforms: [Windows x64]
+  browsers:
+    documented: [Android Chrome, iOS Safari, iOS Chrome/Firefox, Chrome, Firefox, Edge]
+    webxr_support: [Android Chrome]
+    abr_gap: iOS Safari lacks MediaSource Extensions, limiting playback to a single framerate/resolution.
+
+sla:
+  url: null
+  uptime_target: null
+
+status_page: null
+status_page_probes:
+- {url: 'https://status.8i.com/', result: NXDOMAIN}
+- {url: 'https://8i.com/status/', http_status: 404}
+
+support:
+  email: support@8i.com
+  zendesk: https://8isupport.zendesk.com
+  zendesk_probe: {url: 'https://8isupport.zendesk.com/', http_status: 403}
+  slack: Dedicated Slack channel issued with a stage purchase (not public).
+  contact_form: https://8i.com/contact/
+
+deprecated_operations: []

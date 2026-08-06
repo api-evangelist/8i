@@ -1,0 +1,132 @@
+generated: '2026-08-06'
+method: searched
+source: https://8i.github.io/embeddable_webplayer/#/
+description: >-
+  8i's integration surface is a set of client-side playback components rather than an
+  HTTP API. Three families are documented publicly: an embeddable browser player, a
+  Unity plugin component set, and an Unreal plugin class set. All three consume the
+  same PAT volumetric assets delivered as MPEG-DASH MPD manifests.
+
+families:
+
+- family: web
+  name: 8i WebPlayer
+  docs: https://8i.github.io/embeddable_webplayer/#/
+  demo: https://player.8i.com
+  loader: https://player.8i.com/release/latest/volcap-player.js
+  runtime_dependencies:
+  - THREE.js
+  - A-Frame (optional)
+  - 8th Wall 8frame (optional, paid, for AR on iOS)
+  browser_requirements:
+  - Web Components
+  - Shadow DOM
+  - WebAssembly
+  - WebGL
+  - MediaSource Extensions (required for adaptive bitrate)
+  surfaces:
+  - kind: aframe-component
+    name: hologram
+    attributes:
+    - {name: abr, type: boolean, default: 'true', description: Enables or disables adaptive bitrate management}
+    - {name: bitrate, type: number, default: '-1', description: Sets the desired bitrate of the video}
+    - {name: src, type: string, default: '', description: The URL of the manifest.mpd to play}
+    - {name: autoplay, type: boolean, default: 'true', description: When enabled the hologram plays automatically}
+    - {name: contrast, type: number, default: '0.85', description: Adjusts the contrast of the hologram}
+    - {name: opacity, type: number, default: '1.0', description: Adjusts opacity of the hologram}
+    - {name: loop, type: boolean, default: 'false', description: Enables or disables looping}
+    - {name: license_server_url, type: string, default: '', description: Sets the clearkey license server URL}
+    - {name: muted, type: boolean, default: 'true', description: Enables or disables audio}
+    - {name: fps, type: number, default: '15', description: Sets the framerate of the hologram (15 or 30)}
+    - {name: hls, type: boolean, default: 'true', description: Enables or disables HLS}
+    properties:
+    - {name: bitrate, readonly: false}
+    - {name: bitrates, readonly: true, description: Returns the list of supported bitrates}
+    - {name: contrast, readonly: false}
+    - {name: opacity, readonly: false}
+    - {name: currentTime, readonly: false, description: Playback position in seconds}
+    - {name: duration, readonly: true, description: Duration of the hologram in seconds}
+    - {name: lastProcessedFrame, readonly: true}
+    - {name: license_server_url, readonly: false}
+    - {name: map, readonly: true, description: Returns a THREE.Texture usable in materials}
+    - {name: material, readonly: false, description: THREE.Material used to render the hologram}
+    - {name: muted, readonly: false}
+    - {name: video, readonly: true, description: Returns the backing video element}
+    - {name: mesh, readonly: true, description: Returns the current THREE.Mesh object}
+    - {name: hls, readonly: false}
+    methods:
+    - {name: play, description: Begins playback}
+    - {name: pause, description: Pauses playback}
+    events:
+    - {name: onplay, description: Fired when playback begins}
+    - {name: onpause, description: Fired when playback is paused}
+    - {name: onended, description: Fired when playback is complete}
+    - {name: oncanplay, description: Fired when the hologram is loaded and playback can begin}
+    - {name: onbufferempty, description: Fired when the playback buffer is empty}
+    - {name: onbufferloaded, description: Fired when the playback buffer is full}
+  - kind: javascript-class
+    name: EightiHologram
+    description: >-
+      THREE.js / JSM entry point. Constructed with (manifestURL, scene, renderer,
+      camera, opts) where opts carries loop, abr, autoplay, muted and fps.
+    methods: [update, play, pause]
+    callbacks: [oncanplay]
+  templates:
+  - {name: 8th Wall A-Frame template project, url: 'https://www.8thwall.com/8thwall/aframe-8i'}
+  - {name: 8th Wall THREE.js template project, url: 'https://www.8thwall.com/playground/threejs-8i'}
+  - {name: Materials example, url: 'https://player.8i.com/materials/index.html'}
+  x-evidence:
+    fetched: '2026-08-06'
+    url: https://8i.github.io/embeddable_webplayer/README.md
+    http_status: 200
+    note: >-
+      The docs host is a docsify single-page app; the real reference is the raw
+      README.md the SPA loads, which is what was captured.
+
+- family: unity
+  name: 8i Unity Plugin
+  version: 1.8.0f1
+  docs: https://8iunityplugin.readthedocs.io/en/latest/Components/index.html
+  shared_interface:
+  - IEightiAsset
+  - IEightiActor
+  groups:
+  - group: HVR main components
+    components: [HvrActor, HvrRender, HvrLight]
+  - group: HVR effects
+    components: [HvrActor3DMask, HvrColorGrading, HvrShaderSubroutine]
+  - group: HVR utilities
+    components: [HvrActorTrigger, HvrActorAnimationSync, HvrActorAudioSourceSync, HvrActorProjectorShadow,
+      HvrDataBuildInclude, HvrDataReference]
+  - group: PAT main script components
+    components: [PatActor, PatAsset, PatAudioRender, PatDownloader, PatLiveManager,
+      PatPlayerRepresentation, PatRender]
+  - group: PAT timeline (Unity 2020+)
+    components: [PatTimelineProperties, PatTrackRenderer, PatActor_AssetBehavior, PatActor_AssetTrack,
+      PatActor_ClipMixerBehavior, PatActor_PlayableAsset]
+  - group: PAT examples
+    components: [PatStreamPlayer, PatLiveAsgardPlayer]
+  x-evidence:
+    fetched: '2026-08-06'
+    url: https://8iunityplugin.readthedocs.io/en/latest/Components/index.html
+    http_status: 200
+
+- family: unreal
+  name: 8i Unreal Plugin
+  version: 0.6.1
+  docs: https://8iunrealplugin.readthedocs.io/en/latest/Classes/index.html
+  classes:
+  - name: PATActor
+    description: >-
+      Main scene object. Parameter groups: Audio (attenuation), Eighti (PAT Data
+      Asset, Playing Status, Open Status), Init Controls (Enable Logging, Use
+      Verbosity, Loop Playback, Playback Speed, Enable Hardware Decode If Available,
+      Enable Hardware Texture Output, Enable Audio), Playback Info (Asset Frame Rate,
+      Asset Duration, Current Frame timestamp), Playback Controls (Start Time, ...),
+      Material.
+  - name: PATAsset
+    description: Data asset that a PATActor loads during play.
+  x-evidence:
+    fetched: '2026-08-06'
+    url: https://8iunrealplugin.readthedocs.io/en/latest/Classes/PATActor.html
+    http_status: 200

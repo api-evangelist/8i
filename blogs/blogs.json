@@ -1,0 +1,14 @@
+{
+  "repo": "8i",
+  "feeds": [
+    {
+      "source": "https://8i.com/contact/",
+      "feed_url": "https://8i.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-06T14:08:46Z"
+}

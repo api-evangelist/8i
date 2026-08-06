@@ -1,0 +1,96 @@
+generated: '2026-08-06'
+method: searched
+source: https://8i.github.io/embeddable_webplayer/#/
+notes: >-
+  8i publishes no first-party client library on npm, PyPI, Maven Central, NuGet,
+  pkg.go.dev, RubyGems, Packagist or crates.io (all searched 2026-08-06, no
+  first-party result). Its SDKs ship as a CDN-hosted browser bundle and as
+  game-engine plugins distributed directly by 8i to stage customers.
+
+packages:
+- language: javascript
+  registry: cdn
+  name: volcap-player.js
+  product: 8i WebPlayer
+  url: https://player.8i.com/release/latest/volcap-player.js
+  versioned_url: https://player.8i.com/release/${VERSION}/volcap-player.js
+  install: <script src="https://player.8i.com/release/latest/volcap-player.js"></script>
+  docs: https://8i.github.io/embeddable_webplayer/#/
+  latest_version: 3.8.46
+  official: true
+  access: public
+  x-evidence:
+    fetched: '2026-08-06'
+    url: https://player.8i.com/release/latest/volcap-player.js
+    http_status: 200
+    content_type: text/javascript
+    bytes: 1402648
+
+- language: javascript
+  registry: cdn
+  name: skadi.js
+  product: 8i Stream scene player
+  url: https://skadi.8i.com/skadi.js
+  install: <script src="https://skadi.8i.com/skadi.js"></script>
+  docs: null
+  official: true
+  access: public
+  undocumented: true
+  note: >-
+    Loaded by the 8i Stream shareable-link player pages (stream.8i.com/p/{code}).
+    No public developer documentation was found for this bundle.
+  x-evidence:
+    fetched: '2026-08-06'
+    url: https://skadi.8i.com/skadi.js
+    http_status: 200
+    content_type: application/javascript
+    bytes: 4362977
+
+- language: csharp
+  registry: direct-download
+  name: 8i Unity Plugin
+  version: 1.8.0f1
+  url: null
+  docs: https://8iunityplugin.readthedocs.io/en/latest/
+  official: true
+  access: gated
+  access_note: >-
+    "Download the 8i Unity Plugin. You should be getting a link from 8i after the
+    purchase of stage, or you can ask your 8i contact to get one." Documentation is
+    public; the plugin archive itself is issued to stage customers.
+  supported_hosts:
+  - Unity 2018.4 (LTS)
+  - Unity 2019.4 (LTS)
+  - Unity 2020.3 (LTS)
+  - Unity 2021.3 (LTS)
+  x-evidence:
+    fetched: '2026-08-06'
+    url: https://8iunityplugin.readthedocs.io/en/latest/About.html
+    http_status: 200
+
+- language: cpp
+  registry: direct-download
+  name: 8i Unreal Plugin
+  version: 0.6.1
+  url: null
+  docs: https://8iunrealplugin.readthedocs.io/en/latest/
+  official: true
+  access: gated
+  supported_hosts:
+  - Unreal Engine 4.27.2 (Visual Studio 2019)
+  - Unreal Engine 5.1.0 (Visual Studio 2022)
+  supported_platforms:
+  - Windows x64
+  x-evidence:
+    fetched: '2026-08-06'
+    url: https://8iunrealplugin.readthedocs.io/en/latest/
+    http_status: 200
+
+registries_searched:
+- registry: npm
+  queries: [volcap, eighti, "8i hologram"]
+  first_party_results: 0
+- registry: pypi
+  queries: ["8i"]
+  first_party_results: 0
+  http_status: 404

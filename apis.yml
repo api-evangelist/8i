@@ -1,18 +1,59 @@
 aid: 8i
 name: 8i
-description: '8i is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: '8i is a volumetric video company that captures, transforms, and streams
+  photorealistic holograms of real people for AR, VR, WebXR, and mobile experiences.
+  It sells the ASPX hologram capture stages (cameras, lights, sync boxes, calibration
+  and recording software), a transformation pipeline that encodes captures into its
+  PAT mesh-based codec with MPD/MPEG-DASH, glTF and FBX outputs, and a streaming layer
+  that distributes holograms over CDN with shareable links, DRM and viewer analytics.
+  Developers integrate 8i holograms through the 8i Unity Plugin, the 8i Unreal Plugin,
+  and the embeddable 8i WebPlayer (volcap-player.js), which exposes an A-Frame hologram
+  component and a THREE.js EightiHologram class with adaptive-bitrate DASH/HLS playback,
+  clearkey DRM, and WebXR / 8th Wall augmented reality.'
+image: https://8i.com/wp-content/uploads/2021/06/Middle-Logo2.svg
 url: https://raw.githubusercontent.com/api-evangelist/8i/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
 tags:
+- Volumetric Video
+- Holograms
+- 3D
+- Augmented Reality
+- Virtual Reality
+- WebXR
+- Streaming
+- Media
+- Video
+- Entertainment
 - Company
-apis: []
+apis:
+- aid: 8i:webplayer
+  name: 8i WebPlayer
+  description: 'The 8i WebPlayer (volcap-player.js) is an embeddable browser player
+    for 8i PAT volumetric content, served from the 8i CDN and documented publicly.
+    It ships an A-Frame hologram component and a THREE.js EightiHologram class with
+    documented attributes, properties, methods and playback events, adaptive-bitrate
+    MPEG-DASH streaming (HLS on Safari), clearkey DRM, and WebXR / 8th Wall AR support.
+    It is a client-side library rather than an HTTP API: 8i publishes no OpenAPI, GraphQL
+    SDL, or other machine-readable contract for it.'
+  humanURL: https://8i.github.io/embeddable_webplayer/#/
+  baseURL: https://player.8i.com
+  tags:
+  - Volumetric Video
+  - WebXR
+  - Streaming
+  properties:
+  - type: Documentation
+    url: https://8i.github.io/embeddable_webplayer/#/
+  - type: Demo
+    url: https://player.8i.com
+  - type: ChangeLog
+    url: changelog/8i-changelog.yml
+  - type: Components
+    url: components/8i-components.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +61,45 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/8i_stock/
+  url: https://8i.com/
+- type: Documentation
+  url: https://8iunityplugin.readthedocs.io/en/latest/
+- type: APIReference
+  url: https://8i.github.io/embeddable_webplayer/#/
+- type: GettingStarted
+  url: https://8iunityplugin.readthedocs.io/en/latest/Quickstart.html
+- type: Support
+  url: https://8i.com/contact/
+- type: Blog
+  url: https://8i.com/blog/
+- type: GitHubOrganization
+  url: https://github.com/8i
+- type: About
+  url: https://8i.com/about/
+- type: Press
+  url: https://8i.com/press/
+- type: Careers
+  url: https://8i.com/careers/
+- type: Packages
+  url: packages/8i-packages.yml
+- type: SDKs
+  url: packages/8i-packages.yml
+- type: Components
+  url: components/8i-components.yml
+- type: ChangeLog
+  url: changelog/8i-changelog.yml
+- type: Conformance
+  url: conformance/8i-conformance.yml
+- type: Conventions
+  url: conventions/8i-conventions.yml
+- type: Lifecycle
+  url: lifecycle/8i-lifecycle.yml
+- type: DomainSecurity
+  url: security/8i-domain-security.yml
+- type: LLMsTxt
+  url: llms/8i-llms.txt
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 9
+  pass: local-v1

@@ -1,0 +1,59 @@
+generated: '2026-08-06'
+method: probed
+source: null
+result: none
+notes: >-
+  No /.well-known/ document is served on any 8i host. Recorded as negative probe
+  evidence only — no WellKnown, SecurityTxt or AgentCard pointer is wired in apis.yml,
+  because nothing is published. The 8i.com origin (WordPress) returns a true 404; the
+  CDN/API-Gateway hosts return 403 for any path that is not a defined route.
+
+hosts:
+- host: https://8i.com
+  origin: WordPress (WP Engine)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+- host: https://player.8i.com
+  origin: CloudFront/S3
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+  - {path: /.well-known/agent-card.json, status: 403}
+  - {path: /.well-known/agent.json, status: 403}
+  - {path: /llms.txt, status: 403}
+- host: https://stream.8i.com
+  origin: AWS API Gateway
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+  - {path: /.well-known/agent-card.json, status: 403}
+  - {path: /.well-known/agent.json, status: 403}
+- host: https://skadi.8i.com
+  origin: CloudFront/S3
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/agent-card.json, status: 403}
+  - {path: /.well-known/agent.json, status: 403}
+- host: https://dash-cdn.8i.com
+  origin: CloudFront
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/agent-card.json, status: 403}
+  - {path: /.well-known/agent.json, status: 403}
+
+agent_card: none
+security_txt: none
+checked: '2026-08-06'

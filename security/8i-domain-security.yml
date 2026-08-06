@@ -1,0 +1,20 @@
+generated: '2026-08-06'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: 8i.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 21 18:49:42 2026 GMT
+  hsts: false
+- host: player.8i.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Mar  2 23:59:59 2027 GMT
+  hsts: false
+domains:
+- domain: 8i.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false

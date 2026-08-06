@@ -1,0 +1,84 @@
+generated: '2026-08-06'
+method: searched
+source: https://8i.github.io/embeddable_webplayer/#/
+notes: >-
+  8i publishes no API-level compliance program (no SOC 2 / ISO 27001 / PCI / HIPAA /
+  FedRAMP page was found, and no trust center resolves). What it does document — and
+  what was verified against a live asset manifest — is a stack of media, 3D and web
+  platform standards used by its PAT codec, delivery layer and players. No Compliance
+  pointer is emitted: none of these are certifications.
+
+standards:
+- id: mpeg-dash
+  name: MPEG-DASH (ISO/IEC 23009-1)
+  conforms: true
+  evidence: >-
+    Live asset manifest at assets.8i.com returns an MPD using
+    xmlns="urn:mpeg:dash:schema:mpd:2011" with
+    profiles="urn:mpeg:dash:profile:isoff-live:2011", SegmentTemplate/SegmentTimeline
+    and multiple bitrate Representations (2048-15fps, 1024-15fps, ...).
+  x-evidence:
+    fetched: '2026-08-06'
+    url: https://assets.8i.com/st01pro20200929_S01_T09_20201020_100808/manifest.mpd
+    http_status: 200
+- id: hls
+  name: HTTP Live Streaming
+  conforms: true
+  evidence: >-
+    WebPlayer documents an `hls` attribute/property, used for Safari where DASH
+    playback is unavailable; PAT MPD output is documented as extending "the well
+    known MPEG-DASH and HLS standards".
+- id: iso-bmff
+  name: ISO base media file format / fragmented MP4
+  conforms: true
+  evidence: MPD Representations use mimeType video/mp4 with init.mp4 + .m4s segments, codecs avc1.4d4032.
+- id: gltf-2.0
+  name: glTF 2.0
+  conforms: true
+  evidence: PAT codec publishes a glTF output "particularly suitable for the web" (Unity plugin Components doc).
+- id: fbx
+  name: Autodesk FBX
+  conforms: true
+  evidence: PAT codec publishes an FBX output for editing in tools such as Maya.
+- id: draco
+  name: Google Draco mesh compression
+  conforms: true
+  evidence: >-
+    8i Stream player pages set a gltf-model dracoDecoderPath of
+    https://skadi.8i.com/assets/; the 8i GitHub org forks google/draco.
+- id: webxr
+  name: WebXR Device API
+  conforms: true
+  evidence: "WebPlayer documents core AR support via the WebXR API (Chrome for Android); player scenes declare webxr=\"referenceSpaceType: local-floor\"."
+- id: webgl
+  name: WebGL / WebGL2
+  conforms: true
+  evidence: Listed as a required browser feature; 3.8.39 adds WebGL2 feature use when available.
+- id: webassembly
+  name: WebAssembly
+  conforms: true
+  evidence: Listed as a required browser feature for the embeddable player.
+- id: web-components
+  name: Web Components / Shadow DOM
+  conforms: true
+  evidence: Listed as required browser features; the player exposes a `volcap-player` element.
+- id: media-source-extensions
+  name: Media Source Extensions
+  conforms: true
+  evidence: Documented as required for PAT adaptive-bitrate support; absent on iOS Safari, which is limited to a single framerate/resolution.
+- id: eme-clearkey
+  name: Encrypted Media Extensions - clearkey
+  conforms: true
+  evidence: Player exposes a `license_server_url` attribute/property that sets the clearkey license server URL.
+- id: oauth2
+  conforms: false
+  evidence: No OAuth or OpenID Connect surface found; no authorization-server metadata at any 8i host.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No public HTTP API with documented error types. The stream.8i.com edge returns AWS API Gateway's default {"message":"..."} envelope.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on 8i.com and is not served on player.8i.com or stream.8i.com.
+
+certifications: []
+compliance_program_published: false

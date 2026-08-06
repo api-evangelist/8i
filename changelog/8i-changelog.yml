@@ -1,0 +1,128 @@
+generated: '2026-08-06'
+method: searched
+source: https://8i.github.io/embeddable_webplayer/#/
+scheme: semver
+notes: >-
+  8i publishes two dated/versioned change surfaces: the WebPlayer changelog inside the
+  embeddable player documentation (dated), and the Unreal plugin release notes
+  (versioned, undated). The Unity plugin publishes a version number (1.8.0f1) but no
+  release-notes page. Recent window only — the live docs remain the source of truth.
+
+surfaces:
+- product: 8i WebPlayer (volcap-player.js)
+  url: https://8i.github.io/embeddable_webplayer/#/
+  raw: https://8i.github.io/embeddable_webplayer/README.md
+  current_version: 3.8.46
+  current_date: '2024-10-01'
+  dated: true
+- product: 8i Unreal Plugin
+  url: https://8iunrealplugin.readthedocs.io/en/latest/Release%20Notes.html
+  current_version: 0.6.1
+  dated: false
+- product: 8i Unity Plugin
+  url: https://8iunityplugin.readthedocs.io/en/latest/
+  current_version: 1.8.0f1
+  dated: false
+  release_notes: false
+
+entries:
+- product: webplayer
+  version: 3.8.46
+  date: '2024-10-01'
+  breaking: false
+  highlights:
+  - Prevents a crash with "Cannot read properties of undefined (reading 'getMeshByFrameId')"
+- product: webplayer
+  version: 3.8.45
+  date: '2024-08-20'
+  breaking: false
+  highlights:
+  - Updating underlying <video> position and sizing
+  - Additional check when destroying player instance
+- product: webplayer
+  version: 3.8.44
+  date: '2024-04-03'
+  breaking: false
+  highlights: [Additional cleanup on destroy calls]
+- product: webplayer
+  version: 3.8.43
+  date: '2024-04-01'
+  breaking: false
+  highlights: [Improve memory cleanup]
+- product: webplayer
+  version: 3.8.42
+  date: '2024-02-14'
+  breaking: false
+  highlights: [Add support for THREE.js and A-Frame Fog]
+- product: webplayer
+  version: 3.8.41
+  date: '2023-11-17'
+  breaking: false
+  highlights:
+  - Add HLS property enabling users to disable HLS when used with Safari
+  - Documentation updated to remove mentions of deprecated HVR support
+- product: webplayer
+  version: 3.8.40
+  date: '2023-08-18'
+  breaking: false
+  highlights: [Improve 8thWall handling]
+- product: webplayer
+  version: 3.8.39
+  date: '2023-08-18'
+  breaking: true
+  highlights:
+  - Make use of WebGL2 features when available, improving performance
+  - Renamed licenseServerURL property to license_server_url
+  - Resolves issues related to looped playback on newer iOS versions
+- product: webplayer
+  version: 3.8.38
+  date: '2023-06-05'
+  breaking: false
+  highlights:
+  - Add .volcap-video class to <video> elements created by the volcap player
+  - Expose accessors for video and mesh
+- product: webplayer
+  version: 3.8.37
+  date: '2023-03-21'
+  breaking: false
+  highlights: [Resolve issues setting the initial opacity value when using THREE.js]
+- product: webplayer
+  version: 3.8.36
+  date: '2023-03-01'
+  breaking: false
+  highlights: [Oculus browser support when using A-Frame >= 1.3.0, Improved playback control and performance]
+- product: webplayer
+  version: 3.8.35
+  date: '2023-02-01'
+  breaking: false
+  highlights: [Timecode processing improvements, Lower default contrast to 0.85]
+- product: webplayer
+  version: 3.8.34
+  date: '2022-11-29'
+  breaking: false
+  highlights:
+  - Added opacity property
+  - Added support for normals and relighting
+  - Added dynamic material support
+- product: unreal
+  version: 0.6.1
+  date: null
+  breaking: false
+  highlights:
+  - Direct GPU-to-GPU texture transfer path for hardware accelerated decode (requires D3D11)
+  - Toggle to enable/disable audio
+  - Default project AA algorithm set to FXAA instead of temporal AA
+  - Bugfixes for excessive GPU memory use, seek-to-beginning, and PixelStreaming in UE5
+- product: unreal
+  version: 0.5.2
+  date: null
+  breaking: false
+  highlights: [Bugfix for preview mesh crash in packaged builds]
+- product: unreal
+  version: 0.5.0
+  date: null
+  breaking: false
+  highlights:
+  - Convenience loader for .8iPat local files
+  - Editor preview for assets
+  - Playback controls for custom start/stop times and render speed

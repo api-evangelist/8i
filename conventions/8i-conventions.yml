@@ -1,0 +1,140 @@
+generated: '2026-08-06'
+method: searched
+source: https://8i.github.io/embeddable_webplayer/#/
+scope: >-
+  8i ships no documented HTTP API, so the cross-cutting semantics captured here are the
+  ones an integrator actually has to honor: how the player library is versioned and
+  loaded, what the content contract is (a DASH manifest URL), how playback is
+  configured and observed, and how content is protected. Observed HTTP endpoints on the
+  8i Stream edge are recorded separately below as probe evidence, not as a contract.
+
+authentication:
+  style: none-for-playback
+  detail: >-
+    Playback of a hologram requires only the manifest URL. No API key, bearer token or
+    OAuth flow is documented for any 8i host. Content protection, where used, is
+    clearkey DRM configured with license_server_url on the player.
+  see: null
+
+versioning:
+  scheme: semver-in-path
+  library: volcap-player.js
+  latest_channel: https://player.8i.com/release/latest/volcap-player.js
+  pinned_channel: https://player.8i.com/release/${VERSION}/volcap-player.js
+  documented_example: https://player.8i.com/release/2.8.26/volcap-player.js
+  guidance: >-
+    The docs explicitly offer both a floating `latest` channel and a pinned version
+    channel, with the changelog as the version history. Pin for production.
+  see: changelog/8i-changelog.yml
+
+content_contract:
+  kind: mpeg-dash-manifest
+  parameter: src (A-Frame) / first constructor argument (EightiHologram)
+  form: https://<cdn-host>/<asset-id>/manifest.mpd
+  documented_examples:
+  - https://assets.8i.com/st01pro20200929_S01_T09_20201020_100808/manifest.mpd
+  - https://assets.8i.com/8IPROMOEXPERIENCE20210204_S02_T01_20210205_141236/manifest.mpd
+  live_events: >-
+    The same attribute accepts a DASH manifest URL pointing at a live stage origin via
+    CDN, e.g. https://d1swl7ahe9gzcn.cloudfront.net/manifest.mpd for the Chicago stage.
+  see: conformance/8i-conformance.yml
+
+adaptive_bitrate:
+  enabled_by_default: true
+  toggle: abr
+  manual_selection: bitrate (setting a manual bitrate disables ABR)
+  discovery: bitrates property returns the supported list, e.g. [5940000, 14940000, 46980000]
+  constraint: >-
+    Manual bitrate selection and ABR control are unavailable where DASH playback is not
+    available (Apple Safari on iOS, iPadOS and macOS), which falls back to HLS.
+
+playback_defaults:
+  autoplay: true
+  muted: true
+  loop: false
+  fps: 15
+  contrast: 0.85
+  opacity: 1.0
+  note: >-
+    Browsers block autoplay for unmuted video, so the documented default is muted:true;
+    unmute after user gesture.
+
+eventing:
+  style: dom-events
+  events: [onplay, onpause, onended, oncanplay, onbufferempty, onbufferloaded]
+  consumption: onEvent attribute on the player, or addEventListener on the element
+  webhooks: false
+  see: components/8i-components.yml
+
+content_protection:
+  scheme: clearkey
+  parameter: license_server_url
+  breaking_change: renamed from licenseServerURL in webplayer 3.8.39
+  drm_claim: 8i's Stream product page advertises digital rights management.
+
+error_handling:
+  documented_error_catalog: false
+  detail: >-
+    Neither the player docs nor the plugin docs publish an error/status code registry.
+    The Unreal plugin surfaces Playing Status and Open Status enums, and the Unity/Unreal
+    docs carry Troubleshooting and Known Issues pages instead of an error reference.
+  troubleshooting:
+  - https://8iunityplugin.readthedocs.io/en/latest/Troubleshooting.html
+  - https://8iunrealplugin.readthedocs.io/en/latest/Troubleshooting.html
+  - https://8iunrealplugin.readthedocs.io/en/latest/Known%20Issues.html
+
+idempotency:
+  supported: false
+  detail: No HTTP write surface is documented, so there is no idempotency contract to record.
+
+pagination:
+  supported: false
+
+rate_limits:
+  documented: false
+
+observed_http_surface:
+  status: undocumented
+  caveat: >-
+    NOT a published contract. These endpoints were probed anonymously on 2026-08-06 and
+    are recorded as evidence of the delivery surface only. 8i publishes no OpenAPI and
+    documents none of these paths.
+  host: https://stream.8i.com
+  edge: AWS API Gateway (d-3r79wihjd8.execute-api.us-east-1.amazonaws.com)
+  probes:
+  - path: /ping
+    method: GET
+    http_status: 200
+    body: healthy
+  - path: '/p/{shareCode}'
+    method: GET
+    http_status: 200
+    content_type: text/html
+    note: shareable-link player page
+  - path: '/p/{shareCode}/ar'
+    method: GET
+    http_status: 200
+    note: augmented-reality variant of the player page
+  - path: '/p/{shareCode}/data'
+    method: GET
+    http_status: 200
+    content_type: application/json
+    note: >-
+      scene manifest consumed by the player timeline component (settings, tracks[],
+      assets{}, orgID, duration)
+  - path: /
+    method: GET
+    http_status: 403
+    body: '{"message":"Missing Authentication Token"}'
+  - path: /openapi.json
+    method: GET
+    http_status: 403
+  - path: /swagger.json
+    method: GET
+    http_status: 403
+  - path: /graphql
+    method: GET
+    http_status: 403
+  probe_share_code_used: xif8jb
+  probe_share_code_source: >-
+    https://8i.com/ — the "Try It Now" sample embedded on the 8i homepage
