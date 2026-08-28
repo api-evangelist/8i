@@ -10,6 +10,17 @@ description: '8i is a volumetric video company that captures, transforms, and st
   and the embeddable 8i WebPlayer (volcap-player.js), which exposes an A-Frame hologram
   component and a THREE.js EightiHologram class with adaptive-bitrate DASH/HLS playback,
   clearkey DRM, and WebXR / 8th Wall augmented reality.'
+deliveryModel:
+  model: library
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Library · distributed through package registries, no callable service
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 image: https://8i.com/wp-content/uploads/2021/06/Middle-Logo2.svg
 url: https://raw.githubusercontent.com/api-evangelist/8i/refs/heads/main/apis.yml
 x-type: company
