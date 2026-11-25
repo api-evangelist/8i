@@ -84,7 +84,7 @@ Each property below is a page on APIs.io carrying the machine-readable artifact 
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [8I Domain Security](https://apis.io/security/8i/8i-domain-security/)
+- [8i Domain Security](https://apis.io/security/8i/8i-domain-security/)
 
 ## Where to find this API
 
@@ -100,18 +100,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 19.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+**Kin Score 18.5** — emerging · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
-| Discoverability | 67.0 |
+| Discoverability | 67.9 |
 | Contract quality | 0.0 |
 | Contract governance | 18.2 |
-| Operational transparency | 18.4 |
+| Operational transparency | 19.0 |
 | Developer ergonomics | 42.9 |
 | Access clarity | 0.0 |
 
-**Agent readiness 0.0** — human-only
+**Agent readiness 0.7** — human-only
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -134,8 +134,14 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Protected Resource Metadata | — |
 | Dynamic Client Registration | — |
 | Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | yes |
 
-**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+**Regulatory alignment 4.9** — Horizontal (data, software, accessibility, platform)
 
 The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/8i/](https://apis.io/providers/8i/).
 
